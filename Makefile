@@ -1,8 +1,8 @@
 CXX = g++
-CXXFLAGS = -Wall -std=c++17 -I classes -I models  # Added -I models
+CXXFLAGS = -Wall -std=c++17 -I classes 
 
 # Find all cpp files excluding main files
-COMMON_SRCS := $(shell find classes models -name '*.cpp')  # Added models
+COMMON_SRCS := $(shell find classes -name '*.cpp')
 COMMON_OBJS := $(COMMON_SRCS:.cpp=.o)
 
 # Server specific

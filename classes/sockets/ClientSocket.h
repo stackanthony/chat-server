@@ -14,10 +14,10 @@ public:
   ClientSocket(const char *address, int port);
   ~ClientSocket();
 
-  void sendMessage(const std::string &message, int clientSocketDescriptor);
+  void sendMessageToServer(const std::string &message);
   bool isConnected() const { return connected; }
   int getSocketDescriptor() const { return socketDescriptor; }
-  std::string readMessage();
+  std::string readMessageFromServer();
 
   // Prevent copying as socket resources shouldn't be shared
   ClientSocket(const ClientSocket &) = delete;

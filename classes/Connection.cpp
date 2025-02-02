@@ -8,7 +8,7 @@ Connection::Connection(int serverDescriptor) {
 }
 
 std::string Connection::readMessage() {
-  char buffer[1024] = {0}; // Initialize buffer with zeros
+  char buffer[1024] = {0};
 
   ssize_t bytesRead = recv(connectionDescriptor, buffer, sizeof(buffer) - 1, 0);
   if (bytesRead < 0) {

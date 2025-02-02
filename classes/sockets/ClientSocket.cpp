@@ -35,23 +35,20 @@ ClientSocket::~ClientSocket() {
   }
 }
 
-void ClientSocket::sendMessage(const std::string &message,
-                               int clientSocketDescriptor) {
+void ClientSocket::sendMessageToServer(const std::string &message) {
   if (!connected) {
     throw std::runtime_error("Not connected to server");
   }
 
-  std::string new_message =
-      "[" + std::to_string(clientSocketDescriptor) + "] " + message;
   ssize_t bytesSent =
-      send(socketDescriptor, new_message.c_str(), new_message.length(), 0);
+      send(socketDescriptor, message.c_str(), message.length(), 0);
   if (bytesSent < 0) {
     connected = false;
     throw std::runtime_error("Failed to send message");
   }
 }
 
-std::string ClientSocket::readMessage() {
+std::string ClientSocket::readMessageFromServer() {
   char buffer[1024] = {0};
   ssize_t bytesRead = recv(socketDescriptor, buffer, sizeof(buffer) - 1, 0);
 

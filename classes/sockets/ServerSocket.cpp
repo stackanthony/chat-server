@@ -15,7 +15,9 @@ ServerSocket::ServerSocket(int port) {
   int err = bind(socketDescriptor, (struct sockaddr *)&socketAddress,
                  sizeof(socketAddress));
   if (err < 0) {
-    throw std::runtime_error("Error binding socket");
+    const std::string error_message =
+        "Failed to bind socket: " + std::to_string(err);
+    throw std::runtime_error(error_message);
   }
 
   if (listen(socketDescriptor, 3) < 0) {
